@@ -1,2 +1,1 @@
-<img width="2623" height="1266" alt="diagrama de classe proj sist 2" src="https://github.com/user-attachments/assets/a8d5d1bf-d62e-44fa-9e4f-2d139080a9df" />
-
+<img width="2339" height="1653" alt="E-Commerce-de-roupa-final-_1_" src="https://github.com/user-attachments/assets/2f7b1cba-5ce5-4542-a40e-c3295eb645cb" />
