@@ -1,0 +1,31 @@
+:root {
+  /* Cores */
+  --cor-preto: #0a0a0a;
+  --cor-offwhite: #f2f0ea;
+  --cor-cinza: #8a8a8a;
+  --cor-cinza-claro: #d9d6cf;
+  --cor-acento: #d4ff00;          /* troque aqui para mudar o acento do site todo */
+  --cor-erro: #ff3b30;
+
+  /* Tipografia */
+  --fonte-titulo: "Anton", "Arial Narrow", sans-serif;
+  --fonte-corpo: "Inter", system-ui, sans-serif;
+  --fonte-mono: "Space Mono", monospace;
+
+  /* Espaçamentos */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+  --esp-5: 2.5rem;
+  --esp-6: 4rem;
+
+  /* Bordas e animações */
+  --borda: 2px solid var(--cor-preto);
+  --raio: 0;                      /* streetwear: cantos retos */
+  --transicao: 0.2s ease;
+
+  /* Layout */
+  --largura-max: 1280px;
+  --altura-navbar: 64px;
+}

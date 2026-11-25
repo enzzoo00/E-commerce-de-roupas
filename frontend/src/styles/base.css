@@ -1,0 +1,50 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cor-offwhite);
+  color: var(--cor-preto);
+  font-family: var(--fonte-corpo);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button, input, select { font: inherit; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--esp-3);
+}
+
+/* Botões reutilizáveis */
+.btn {
+  display: inline-block;
+  padding: var(--esp-3) var(--esp-4);
+  border: var(--borda);
+  border-radius: var(--raio);
+  background: var(--cor-preto);
+  color: var(--cor-offwhite);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background var(--transicao), color var(--transicao);
+}
+.btn:hover { background: var(--cor-acento); color: var(--cor-preto); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--contorno { background: transparent; color: var(--cor-preto); }
+.btn--contorno:hover { background: var(--cor-preto); color: var(--cor-offwhite); }
