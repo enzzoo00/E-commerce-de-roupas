@@ -1,0 +1,105 @@
+### Testes do serviço de Clientes
+### Instale a extensão "REST Client" (humao.rest-client) no VS Code e clique em "Send Request"
+
+@base = http://localhost:3001
+
+### Saúde do serviço
+GET {{base}}/health
+
+### 1) Cadastro
+POST {{base}}/clientes/cadastro
+Content-Type: application/json
+
+{
+  "nome": "Ana Teste",
+  "email": "ana@teste.com",
+  "senha": "123456",
+  "telefone": "(85) 99999-0000"
+}
+
+### 2) Login (guarda o token e o id para as próximas requisições)
+# @name login
+POST {{base}}/clientes/login
+Content-Type: application/json
+
+{
+  "email": "ana@teste.com",
+  "senha": "123456"
+}
+
+###
+@token = {{login.response.body.token}}
+@id = {{login.response.body.cliente.id}}
+
+### 3) Perfil
+GET {{base}}/clientes/{{id}}
+Authorization: Bearer {{token}}
+
+### 4) Atualizar perfil
+PUT {{base}}/clientes/{{id}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Ana Teste Silva",
+  "telefone": "(85) 98888-7777"
+}
+
+### 5) Adicionar endereço
+POST {{base}}/clientes/{{id}}/enderecos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "cep": "61600-000",
+  "rua": "Rua das Flores",
+  "numero": "123",
+  "complemento": "Apto 4",
+  "bairro": "Centro",
+  "cidade": "Caucaia",
+  "uf": "CE"
+}
+
+### 6) Listar endereços
+GET {{base}}/clientes/{{id}}/enderecos
+Authorization: Bearer {{token}}
+
+### 7) Editar endereço (troque o 1 pelo id do endereço)
+PUT {{base}}/clientes/{{id}}/enderecos/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "cep": "61600-000",
+  "rua": "Rua das Flores",
+  "numero": "456",
+  "bairro": "Centro",
+  "cidade": "Caucaia",
+  "uf": "CE",
+  "principal": true
+}
+
+### 8) Remover endereço
+DELETE {{base}}/clientes/{{id}}/enderecos/1
+Authorization: Bearer {{token}}
+
+### 9) Validar cliente (rota usada pelo serviço de Pedidos)
+GET {{base}}/clientes/{{id}}/validar
+# X-Service-Key: o-mesmo-valor-do-SERVICE_KEY   (só se SERVICE_KEY estiver definida)
+
+### Erros esperados ------------------------------------------------
+
+### Cadastro inválido -> 400
+POST {{base}}/clientes/cadastro
+Content-Type: application/json
+
+{ "nome": "A", "email": "invalido", "senha": "123" }
+
+### Senha errada -> 401
+POST {{base}}/clientes/login
+Content-Type: application/json
+
+{ "email": "ana@teste.com", "senha": "errada" }
+
+### Sem token -> 401
+GET {{base}}/clientes/{{id}}
